@@ -7,7 +7,6 @@ import { detailsOrder, payOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { ORDER_PAY_RESET } from '../constants/orderConstants';
-import url from '../url';
 
 export default function OrderScreen(props) {
     // Get the orderId from params 
@@ -28,12 +27,7 @@ export default function OrderScreen(props) {
     useEffect(() => {
         // get Paypal clientId from backend 
         const addPayPalScript = async () => {
-            const { data } = await axios.get(url+'/api/config/paypal',{
-                headers:{
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': true
-                }
-            });
+            const { data } = await axios.get('/api/config/paypal');
             //create a paypal script element 
             const script = document.createElement('script');
             script.type = 'text/javascript';
